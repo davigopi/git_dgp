@@ -25,7 +25,6 @@ def run_command(command, show_output=True, capture=False, verbose=True, time_see
     Executa um comando no terminal com suporte a feedback visual.
     """
     if verbose and show_output:
-        print('')
         text = f"⛏️  {command} "      
         for i in range(2, 0, -1):
             text_print = text +  ' | ⏳ ' + str(i) + ' seg.'
