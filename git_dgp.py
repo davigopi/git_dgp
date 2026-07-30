@@ -351,7 +351,7 @@ def main():
                 run_command("git add .")
                 
                 data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                commit_msg = f"Update: {data_hora}"
+                commit_msg = f"{github_user} {data_hora} update"
                 print(f"➔ Criando commit automático com data e hora: '{commit_msg}'")
                 run_command(f'git commit -m "{commit_msg}"')
                 
@@ -402,7 +402,7 @@ def main():
             run_command("git add .")
             
             data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            commit_msg = f"Initial commit - {data_hora}"
+            commit_msg = f"{github_user} {data_hora} Initial"
             print(f"➔ Criando commit inicial: '{commit_msg}'")
             run_command(f'git commit -m "{commit_msg}"')
             
