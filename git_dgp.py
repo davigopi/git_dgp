@@ -201,7 +201,7 @@ def remove_cached_files():
         
         print("➔ Enviando atualização para o GitHub...")
         if run_command("git push"):
-            print(f"\n🎉 SUCESSO: '{target}' foi removido do site do GitHub e continuará salvo no seu computador!")
+            print(f"\n✅ SUCESSO: '{target}' foi removido do site do GitHub e continuará salvo no seu computador!")
         else:
             print(f"\n⚠️ O push falhou. Execute 'git push' manualmente após verificar seu repositório.")
     else:
@@ -212,10 +212,10 @@ def create_github_repo_online(repo_name, github_user, is_private=False):
     if check_gh_installed():
         if check_gh_authenticated():
             visibility = "--private" if is_private else "--public"
-            print(f"\n🚀 Tentando criar repositório '{repo_name}' diretamente no GitHub via GitHub CLI (gh)...")
+            print(f"\n✅ Tentando criar repositório '{repo_name}' diretamente no GitHub via GitHub CLI (gh)...")
             cmd = f"gh repo create {repo_name} {visibility} --source=. --remote=origin"
             if run_command(cmd):
-                print(f"🎉 Repositório '{repo_name}' criado no GitHub com sucesso!")
+                print(f"✅ Repositório '{repo_name}' criado no GitHub com sucesso!")
                 return True
         else:
             print("\nℹ️ GitHub CLI detectado, mas você não está logado.")
@@ -373,7 +373,7 @@ def main():
                     print("➔ Tentando push novamente...")
                     run_command("git push -u origin main")
                     
-                print("\n🎉 Processo concluído com sucesso!")
+                print("\n✅ Processo concluído com sucesso!")
 
             elif acao == '3':
                 show_git_utilities()
@@ -419,7 +419,7 @@ def main():
             success = run_command("git push -u origin main")
             
             if success:
-                print(f"\n🚀 Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{repo_name}")
+                print(f"\n✅ Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{repo_name}")
             else:
                 print("\n⚠️ O push não foi concluído. Verifique se o repositório foi criado corretamente no site do GitHub.")
 
@@ -427,7 +427,7 @@ def main():
             show_git_utilities()
 
         elif existe_repo == '0':
-            print("\n👋 Até logo!")
+            print("\n✔️ ")
             break
         else:
             print("Opção inválida. Tente novamente.")
