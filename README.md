@@ -1,4 +1,3 @@
-===============================================================================
 TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
 ===============================================================================
 
@@ -63,4 +62,3 @@ GitHub no repositório git_dgp e execute o comando abaixo no terminal para
 atualizar no seu computador:
 
 pip install --upgrade git+https://github.com/davigopi/git_dgp.git
-===============================================================================
