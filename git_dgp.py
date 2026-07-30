@@ -426,7 +426,7 @@ def main():
             show_git_utilities()
 
         elif existe_repo == '0':
-            print("\n✔️ ")
+            print("\r✔️ ", end='')
             break
         else:
             print("Opção inválida. Tente novamente.")
