@@ -20,14 +20,16 @@ def print_header(title):
     print(f"  {title.upper()}")
     print("=" * 65)
 
+
 def run_command(command, show_output=True, capture=False, verbose=True, time_seep=0):
     """
     Executa um comando no terminal com suporte a feedback visual.
     """
     if verbose and show_output:
-        text = f"⛏️  {command} "      
+        text = f"⛏️  {command}"
+        text = text.ljust(100)      
         for i in range(2, 0, -1):
-            text_print = text +  ' | ⏳ ' + str(i) + ' seg.'
+            text_print = text +  '| ⏳ ' + str(i) + ' seg.'
             print(f'\r{text_print}', end='')
             time.sleep(1)
         print(f'\r{text}', end=' | ')
