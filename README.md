@@ -1,7 +1,7 @@
 TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
 ===============================================================================
 
-1. ESTRUTURA DA PASTA DO PROJETO LOCAL
+#1. ESTRUTURA DA PASTA DO PROJETO LOCAL
 -------------------------------------------------------------------------------
 Crie uma pasta com o nome git_dgp e coloque os dois arquivos dentro dela:
 
@@ -14,7 +14,7 @@ git_dgp/
 
 
 
-2. CONTEÚDO DO ARQUIVO pyproject.toml
+#2. CONTEÚDO DO ARQUIVO pyproject.toml
 -------------------------------------------------------------------------------
 (Salve o texto abaixo exatamente com o nome pyproject.toml na raiz da pasta)
 
@@ -35,7 +35,7 @@ git_dgp = "git:main"
 
 
 
-3. PUBLICAR NO GITHUB
+#3. PUBLICAR NO GITHUB
 -------------------------------------------------------------------------------
 Crie o repositório público ou privado no GitHub com o nome git_dgp e suba 
 a pasta criada:
@@ -45,7 +45,7 @@ URL do repositório: https://github.com/davigopi/git_dgp
 
 
 
-4. INSTALAR A FERRAMENTA NO COMPUTADOR
+#4. INSTALAR A FERRAMENTA NO COMPUTADOR
 -------------------------------------------------------------------------------
 Abra qualquer terminal no seu computador e execute:
 
@@ -54,7 +54,7 @@ pip install git+https://github.com/davigopi/git_dgp.git
 
 
 
-5. COMO USAR NOS SEUS PROJETOS
+#5. COMO USAR NOS SEUS PROJETOS
 -------------------------------------------------------------------------------
 - Via terminal (em qualquer pasta de projeto React Native, Python, etc.):
   Basta abrir o terminal na pasta desejada e digitar:
@@ -65,7 +65,7 @@ pip install git+https://github.com/davigopi/git_dgp.git
   from git import run_command, create_gitignore_if_missing
 
 
-6. ATUALIZAR A FERRAMENTA NO FUTURO
+#6. ATUALIZAR A FERRAMENTA NO FUTURO
 -------------------------------------------------------------------------------
 Sempre que fizer uma melhoria no script original, suba as alterações para o 
 GitHub no repositório git_dgp e execute o comando abaixo no terminal para 
