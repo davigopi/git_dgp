@@ -6,7 +6,9 @@ TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
 Crie uma pasta com o nome git_dgp e coloque os dois arquivos dentro dela:
 
 git_dgp/
+
 ├── git.py          <-- O seu código da ferramenta Git
+
 └── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
 
 
