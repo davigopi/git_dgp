@@ -27,7 +27,7 @@ def run_command(command, show_output=True, capture=False, verbose=True, time_see
     """
     if verbose and show_output:
         text = f"⛏️  {command}"
-        text = text.ljust(100)      
+        text = text.ljust(80)      
         for i in range(2, 0, -1):
             text_print = text +  '| ⏳ ' + str(i) + ' seg.'
             print(f'\r{text_print}', end='')
@@ -343,38 +343,42 @@ def main():
                 create_gitignore_if_missing()
                 
                 if not os.path.exists(".git"):
-                    print("➔ Inicializando repositório Git local (git init)...")
                     run_command("git init")
+                    print("➔  Repositório Git local.")
                 
                 run_command("git branch -M main")
+                print("➔  Renomeado branch atual para main.")
                 
-                print("➔ Adicionando arquivos (git add .)...")
                 run_command("git add .")
+                print("➔  Adicionado arquivos.")
                 
                 data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 commit_msg = f"{github_user} {data_hora} update"
-                print(f"➔ Criando commit automático com data e hora: '{commit_msg}'")
+        
                 run_command(f'git commit -m "{commit_msg}"')
+                print(f"➔  Criado commit automático com data e hora: '{commit_msg}'")
                 
                 remotes = run_command("git remote -v", show_output=False, capture=True, verbose=False)
                 if "origin" in remotes:
-                    print("➔ Atualizando URL do repositório remoto (git remote set-url)...")
                     run_command(f"git remote set-url origin {repo_url}")
+                    print("➔  Atualizado URL do repositório remoto.")
                 else:
-                    print("➔ Adicionando repositório remoto (git remote add origin)...")
                     run_command(f"git remote add origin {repo_url}")
+                    print("➔  Adicionado repositório remoto.")
                     
-                print("➔ Enviando arquivos para o GitHub (git push -u origin main)...")
                 success = run_command("git push -u origin main")
+                print("➔  Enviado arquivos para o GitHub.")
                 
                 if not success:
-                    print("\n⚠️ O push falhou. Tentando resolver divergência de histórico...")
-                    print("➔ Executando git pull com allow-unrelated-histories...")
-                    run_command("git pull origin main --allow-unrelated-histories --no-rebase")
-                    print("➔ Tentando push novamente...")
-                    run_command("git push -u origin main")
+                    print("\n⚠️  O push falhou. Tentando resolver divergência de histórico...")
                     
-                print("\n✅ Processo concluído com sucesso!")
+                    run_command("git pull origin main --allow-unrelated-histories --no-rebase")
+                    print("➔  Executado git pull com allow-unrelated-histories.")
+
+                    run_command("git push -u origin main")
+                    print("➔  Tentado push novamente.")
+                    
+                print("\n✅  Processo concluído com sucesso!")
 
             elif acao == '3':
                 show_git_utilities()
@@ -396,39 +400,42 @@ def main():
             create_gitignore_if_missing()
             
             if not os.path.exists(".git"):
-                print("➔ Inicializando repositório local (git init)...")
                 run_command("git init")
+                print("➔  Inicializado repositório local.")
                 
-            print("➔ Adicionando arquivos (git add .)...")
             run_command("git add .")
+            print("➔  Adicionado todos os arquivos.")
             
             data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             commit_msg = f"{github_user} {data_hora} Initial"
-            print(f"➔ Criando commit inicial: '{commit_msg}'")
+            
             run_command(f'git commit -m "{commit_msg}"')
+            print(f"➔ Criado commit inicial: '{commit_msg}'")
             
             run_command("git branch -M main")
+            print("➔  Renomeado branch atual para main.")
             
             if not cli_created:
                 remotes = run_command("git remote -v", show_output=False, capture=True, verbose=False)
                 if "origin" in remotes:
                     run_command(f"git remote set-url origin {repo_url}")
+                    print("➔  Alterado repositório remoto já existente.")
                 else:
                     run_command(f"git remote add origin {repo_url}")
+                    print("➔  Adicionado repositório remoto novo.")
                     
-            print("➔ Enviando arquivos para o GitHub (git push -u origin main)...")
             success = run_command("git push -u origin main")
+            print("➔  Enviano arquivos para o GitHub.")
             
             if success:
-                print(f"\n✅ Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{repo_name}")
+                print(f"\n✅  Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{repo_name}")
             else:
-                print("\n⚠️ O push não foi concluído. Verifique se o repositório foi criado corretamente no site do GitHub.")
+                print(f"\n⚠️  O push não foi concluído. Verifique se o repositório (https://github.com/{github_user}/{repo_name}) foi criado corretamente no site do GitHub.")
 
         elif existe_repo in ['u', 'utilitarios', 'utilitários']:
             show_git_utilities()
 
         elif existe_repo == '0':
-            print("\r✔️ ", end='')
             break
         else:
             print("Opção inválida. Tente novamente.")
