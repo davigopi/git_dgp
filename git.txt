@@ -12,49 +12,49 @@ instalar git: https://git-scm.com/install/windows?utm_source=copilot.com
 1) CRIAR REPOSITÓRIO NO GITHUB
 ---------------------------------------------------------
 
-# Vá até github.com
-# Clique em "New Repository"
-# Crie com nome_do_projeto
-# NÃO marque README se for subir projeto já existente
+➔  Vá até github.com
+➔  Clique em "New Repository"
+➔  Crie com nome_do_projeto
+➔  NÃO marque README se for subir projeto já existente
 
 
 ---------------------------------------------------------
 2) CRIAR .gitignore (ANTES DO PRIMEIRO COMMIT)
 ---------------------------------------------------------
 
-# Criar arquivo .gitignore na raiz
+➔  Criar arquivo .gitignore na raiz
 
-# Exemplo de conteúdo:
-# venv/
-# __pycache__/
-# *.pyc
-# senha.txt
+➔  Exemplo de conteúdo:
+➔  venv/
+➔  __pycache__/
+➔  *.pyc
+➔  senha.txt
 
 ---------------------------------------------------------
 3) INICIAR REPOSITÓRIO LOCAL
 ---------------------------------------------------------
 
 git init
-# Inicializa repositório Git na pasta atual
+➔  Inicializa repositório Git na pasta atual
 
 git status
-# Verifica status do repositório
+➔  Verifica status do repositório
 
 ---------------------------------------------------------
 4) CONFIGURAÇÃO INICIAL DO GIT (Executar uma vez no PC)
 ---------------------------------------------------------
 
 git --help
-# Mostra ajuda geral do Git
+➔  Mostra ajuda geral do Git
 
 git config --global user.email "davigopi@gmail.com"
-# Define o email global
+➔  Define o email global
 
 git config --global user.name "davigopi"
-# Define o nome global
+➔  Define o nome global
 
 git config --global init.defaultBranch main
-# Define 'main' como branch padrão ao usar git init
+➔  Define 'main' como branch padrão ao usar git init
 
 
 ---------------------------------------------------------
@@ -62,13 +62,13 @@ git config --global init.defaultBranch main
 ---------------------------------------------------------
 
 git add .
-# Adiciona todos os arquivos
+➔  Adiciona todos os arquivos
 
 git add "nome do arquivo completo.txt"
-# Adiciona arquivo específico
+➔  Adiciona arquivo específico
 
 git rm --cached -r nome_pasta
-# Remove pasta do controle de versão caso já tenha sido adicionada
+➔  Remove pasta do controle de versão caso já tenha sido adicionada
 
 
 ---------------------------------------------------------
@@ -76,7 +76,7 @@ git rm --cached -r nome_pasta
 ---------------------------------------------------------
 
 git commit -m "Initial commit"
-# Cria o primeiro commit
+➔  Cria o primeiro commit
 
 
 ---------------------------------------------------------
@@ -84,19 +84,19 @@ git commit -m "Initial commit"
 ---------------------------------------------------------
 
 git remote -v
-# Verifica se já existe remoto configurado
+➔  Verifica se já existe remoto configurado
 
 git remote add origin https://github.com/davigopi/nome_do_projeto.git
-# Se não existe remoto. Adiciona repositório remoto.
+➔  Se não existe remoto. Adiciona repositório remoto.
 
 git remote set-url origin https://github.com/davigopi/nome_do_projeto.git
-# Se já existe remoto. Altera repositório remoto.
+➔  Se já existe remoto. Altera repositório remoto.
 
 git remote remove origin
-# Remove remoto existente
+➔  Remove remoto existente
 
 git remote rename origin old-origin
-# Renomeia remoto
+➔  Renomeia remoto
 
 
 ---------------------------------------------------------
@@ -104,13 +104,13 @@ git remote rename origin old-origin
 ---------------------------------------------------------
 
 git branch
-# Verifica branches locais
+➔  Verifica branches locais
 
 git branch -M main
-# Renomeia branch atual para main (garantia)
+➔  Renomeia branch atual para main (garantia)
 
-# git checkout -b main
-# NÃO necessário se init.defaultBranch já estiver como main
+➔  git checkout -b main
+➔  NÃO necessário se init.defaultBranch já estiver como main
 
 
 ---------------------------------------------------------
@@ -118,13 +118,13 @@ git branch -M main
 ---------------------------------------------------------
 
 git push -u origin main
-# Envia branch pela primeira vez e define upstream
+➔  Envia branch pela primeira vez e define upstream
 
-# git push --set-upstream origin main
-# Substituído por: git push -u origin main (faz a mesma função)
+➔  git push --set-upstream origin main
+➔  Substituído por: git push -u origin main (faz a mesma função)
 
 git push
-# Envia commits futuros
+➔  Envia commits futuros
 
 
 ---------------------------------------------------------
@@ -132,10 +132,10 @@ git push
 ---------------------------------------------------------
 
 git clone https://github.com/davigopi/agenda_django.git
-# Clona repositório remoto existente
+➔  Clona repositório remoto existente
 
 git clone
-# se utilizar não precisa rodar git init nem git remote add origin, porque o clone já traz tudo configurado.
+➔  se utilizar não precisa rodar git init nem git remote add origin, porque o clone já traz tudo configurado.
 
 
 ---------------------------------------------------------
@@ -143,22 +143,22 @@ git clone
 ---------------------------------------------------------
 
 git status
-# Mostra estado atual
+➔  Mostra estado atual
 
 git branch
-# Lista branches
+➔  Lista branches
 
 git remote -v
-# Lista remotos
+➔  Lista remotos
 
 git log
-# Histórico completo
+➔  Histórico completo
 
 git log --oneline
-# Histórico resumido
+➔  Histórico resumido
 
 git reflog
-# Histórico detalhado (inclusive commits apagados)
+➔  Histórico detalhado (inclusive commits apagados)
 
 
 ---------------------------------------------------------
@@ -166,16 +166,16 @@ git reflog
 ---------------------------------------------------------
 
 git branch nome_da_branch
-# Cria nova branch
+➔  Cria nova branch
 
 git checkout nome_da_branch
-# Muda para branch existente
+➔  Muda para branch existente
 
 git checkout -b nova_branch
-# Cria e já muda para nova branch
+➔  Cria e já muda para nova branch
 
 git merge nome_da_branch
-# Mescla branch especificada na branch atual
+➔  Mescla branch especificada na branch atual
 
 
 ---------------------------------------------------------
@@ -183,13 +183,13 @@ git merge nome_da_branch
 ---------------------------------------------------------
 
 git reset --hard HASH
-# Volta para commit específico e descarta alterações
+➔  Volta para commit específico e descarta alterações
 
 git reset --hard HEAD
-# Volta para último commit
+➔  Volta para último commit
 
 git reset --soft HEAD~2
-# Remove últimos 2 commits mantendo alterações nos arquivos
+➔  Remove últimos 2 commits mantendo alterações nos arquivos
 
 
 ---------------------------------------------------------
@@ -197,13 +197,13 @@ git reset --soft HEAD~2
 ---------------------------------------------------------
 
 git revert HEAD
-# Reverte último commit
+➔  Reverte último commit
 
 git revert HASH
-# Reverte commit específico
+➔  Reverte commit específico
 
 git revert --abort
-# Cancela processo de revert
+➔  Cancela processo de revert
 
 
 ---------------------------------------------------------
@@ -211,16 +211,16 @@ git revert --abort
 ---------------------------------------------------------
 
 git status
-# Verifica arquivos pendentes
+➔  Verifica arquivos pendentes
 
 git branch -M main
-# Garante que está na branch main
+➔  Garante que está na branch main
 
 git remote -v
-# Confirma se o remoto está correto
+➔  Confirma se o remoto está correto
 
 git push -u origin main
-# Faz push inicial se necessário
+➔  Faz push inicial se necessário
 
 
 ---------------------------------------------------------
@@ -228,10 +228,10 @@ git push -u origin main
 ---------------------------------------------------------
 
 git push -u origin main --force
-# Força envio ignorando histórico remoto (CUIDADO)
+➔  Força envio ignorando histórico remoto (CUIDADO)
 
 git pull origin main --allow-unrelated-histories
-# Junta históricos diferentes quando há conflito inicial
+➔  Junta históricos diferentes quando há conflito inicial
 
 
 =========================================================
