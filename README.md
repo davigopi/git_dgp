@@ -38,14 +38,14 @@ git_dgp = "git:main"
 Crie o repositório público ou privado no GitHub com o nome git_dgp e suba 
 a pasta criada:
 
-URL do repositório: https://github.com/davigopi/git_dgp
+URL do repositório: https://github.com/user_github/nome_do_projeto
 
 ---------------------------------------------------------
 ## 4. INSTALAR A FERRAMENTA NO COMPUTADOR
 ---------------------------------------------------------
 Abra qualquer terminal no seu computador e execute:
 
-pip install git+https://github.com/davigopi/git_dgp.git
+pip install git+https://github.com/user_github/nome_do_projeto.git
 
 ---------------------------------------------------------
 ## 5. COMO USAR NOS SEUS PROJETOS
@@ -65,7 +65,7 @@ Sempre que fizer uma melhoria no script original, suba as alterações para o
 GitHub no repositório git_dgp e execute o comando abaixo no terminal para 
 atualizar no seu computador:
 
-pip install --upgrade git+https://github.com/davigopi/git_dgp.git
+pip install --upgrade git+https://github.com/user_github/nome_do_projeto.git
 
 ---------------------------------------------------------
 ---------------------------------------------------------
@@ -118,10 +118,10 @@ git status
 git --help
 ➔  Mostra ajuda geral do Git
 
-git config --global user.email "davigopi@gmail.com"
+git config --global user.email "user@gmail.com"
 ➔  Define o email global
 
-git config --global user.name "davigopi"
+git config --global user.name "user_github"
 ➔  Define o nome global
 
 git config --global init.defaultBranch main
@@ -157,10 +157,10 @@ git commit -m "Initial commit"
 git remote -v
 ➔  Verifica se já existe remoto configurado
 
-git remote add origin https://github.com/davigopi/nome_do_projeto.git
+git remote add origin https://github.com/user_github/nome_do_projeto.git
 ➔  Se não existe remoto. Adiciona repositório remoto.
 
-git remote set-url origin https://github.com/davigopi/nome_do_projeto.git
+git remote set-url origin https://github.com/user_github/nome_do_projeto.git
 ➔  Se já existe remoto. Altera repositório remoto.
 
 git remote remove origin
@@ -202,7 +202,7 @@ git push
 ## 10) CLONAR REPOSITÓRIO EXISTENTE (ALTERNATIVA)
 ---------------------------------------------------------
 
-git clone https://github.com/davigopi/agenda_django.git
+git clone https://github.com/user_github/nome_do_projeto.git
 ➔  Clona repositório remoto existente
 
 git clone
