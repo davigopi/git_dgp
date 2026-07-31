@@ -20,7 +20,8 @@ def print_header(title):
     os.system('cls')
     print("\n" + "=" * 65)
     print(f"  {title.upper()}")
-    print("=" * 65)
+    print("=" * 65 + "\n")
+    print("[0] Sair do programa\n")
 
 
 def run_command(command, show_output=True, capture=False, verbose=True, time_seep=0):
@@ -181,8 +182,7 @@ Thumbs.db
 def remove_cached_files():
     """Remove pastas/arquivos pesados (como node_modules ou venv) do GitHub sem apagar do computador."""
     confirm_working_directory()
-    print_header("Remover pasta/arquivo do GitHub (Manter no PC)\n")
-    print("[0] Sair do programa\n")
+    print_header("Remover pasta/arquivo do GitHub (Manter no PC)")
     
     print("O que você deseja remover do rastreamento do Git ?")
     print("[1] node_modules (React Native / Node)")
@@ -252,8 +252,7 @@ def create_github_repo_online(name_repositoring, github_user, is_private=False):
 def show_git_utilities():
     """Submenu de ferramentas utilitárias do Git com suporte a --no-pager."""
     while True:
-        print_header("Menu de Utilitários e Verificação Git\n")
-        print("[0] Sair do programa\n")
+        print_header("Menu de Utilitários e Verificação Git")
         print("[1] Ver Status atual (git status)")
         print("[2] Ver Histórico resumido (git log --oneline)")
         print("[3] Ver Histórico completo (git log)")
@@ -311,7 +310,6 @@ def get_name_repositoring(github_user):
     
     name_repositoring = Path(__file__).resolve().parent.name
     print_header("Nome do reposirório")
-    print("\n[0] Sair do programa\n")
 
     print(f"{name_repositoring}")
     print(f"É o nome do repositório no github.com/{github_user}/ ? (S/n):")
@@ -336,8 +334,6 @@ def main():
 
     while True:
         print_header("Assistente Automatizado de Git & GitHub")
-        print("Este script guia e executa todos os passos de Git para você.\n")
-        print("[0] Sair do programa\n")
         print("Qual o nome do seu usuário do github ?")
         github_user = input("➔  ").strip()
         if not github_user:
@@ -351,9 +347,7 @@ def main():
     configure_git_global(github_user)
     
     while True:
-        print_header("Menu Principal - Assistente Git")
-        print(f"\nUsuário atual: {github_user}")
-        print("[0] Sair do programa\n")
+        print_header(f"Menu Principal - Assistente Git para {github_user}")
         print(f"Existe repositório em github.com/{github_user}/ ? ")
         print("[S] Sim, repositório já existe")
         print("[N] Não, quero criar um repositório novo")
@@ -368,8 +362,7 @@ def main():
             
             repo_url = f"https://github.com/{github_user}/{name_repositoring}.git"
             
-            print_header("Menu Principal - Assistente Git\n")
-            print("[0] Sair do programa\n")
+            print_header("Menu Principal - Assistente Git")
             print(f"O que você deseja fazer com o repositório '{name_repositoring}' ?")
             print("[1] CLONAR o repositório do GitHub para este computador")
             print("[2] ENVIAR os arquivos deste computador para o GitHub")
