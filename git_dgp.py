@@ -14,8 +14,10 @@ import os
 import sys
 import time
 from datetime import datetime
+from pathlib import Path
 
 def print_header(title):
+    os.system('cls')
     print("\n" + "=" * 65)
     print(f"  {title.upper()}")
     print("=" * 65)
@@ -54,7 +56,7 @@ def check_git_installed():
     if not run_command("git --version", show_output=False, capture=True, verbose=False):
         print("\n[X] ERRO CRÍTICO: O Git não está instalado ou não está no PATH do sistema.")
         print("    Por favor, instale o Git antes de continuar:")
-        print("    👉 https://git-scm.com/install/windows")
+        print("    https://git-scm.com/install/windows")
         sys.exit(1)
 
 def check_gh_installed():
@@ -71,14 +73,16 @@ def confirm_working_directory():
     """Exibe e confirma/altera o diretório de trabalho local do projeto com validação."""
     while True:
         current_dir = os.getcwd()
-        
-        opcao = input(f"Deseja executar a ação na pasta {current_dir}? [S/n]: ").strip().lower()
+
+        print(f"Deseja executar a ação na pasta {current_dir}? [S/n]: ")
+        opcao = input("➔  ").strip().lower()
         
         if opcao not in ['n', 'nao', 'não']:
             print(f"✅ Usando diretório: {current_dir}")
             break
-            
-        novo_caminho = input("\n👉 Digite ou cole o caminho completo da pasta desejada: ").strip().strip('"')
+
+        print("\n⌨️  Digite ou cole o caminho completo da pasta desejada: ")
+        novo_caminho = input("➔  ").strip().strip('"')
         
         if os.path.exists(novo_caminho) and os.path.isdir(novo_caminho):
             os.chdir(novo_caminho)
@@ -100,16 +104,20 @@ def configure_git_global(username):
     
     if not current_user or not current_email:
         print("\nConfigurando credenciais globais do Git...")
-        email = input(f"Informe o seu e-mail do GitHub (ex: {username}@gmail.com): ").strip()
+        print(f"Informe o seu e-mail do GitHub (ex: {username}@gmail.com): ")
+        email = input("➔  ").strip()
         run_command(f'git config --global user.name "{username}"')
         run_command(f'git config --global user.email "{email}"')
         run_command('git config --global init.defaultBranch main')
         print("✅ Configuração global salva com sucesso!")
     else:
-        opcao = input("Deseja atualizar suas configurações globais (Nome/Email)? (s/N): ").strip().lower()
+        print("\nDeseja atualizar suas configurações globais (Nome/Email) ? (s/N)")
+        opcao = input("➔  ").strip().lower()
         if opcao == 's':
-            novo_nome = input(f"Novo user.name [{current_user}]: ").strip() or current_user
-            novo_email = input(f"Novo user.email [{current_email}]: ").strip() or current_email
+            print(f"Novo user.name [{current_user}]:")
+            novo_nome = input("➔  ").strip() or current_user
+            print(f"Novo user.email [{current_email}]: ")
+            novo_email = input("➔  ").strip() or current_email
             run_command(f'git config --global user.name "{novo_nome}"')
             run_command(f'git config --global user.email "{novo_email}"')
             run_command('git config --global init.defaultBranch main')
@@ -173,19 +181,23 @@ Thumbs.db
 def remove_cached_files():
     """Remove pastas/arquivos pesados (como node_modules ou venv) do GitHub sem apagar do computador."""
     confirm_working_directory()
-    print_header("Remover pasta/arquivo do GitHub (Manter no PC)")
+    print_header("Remover pasta/arquivo do GitHub (Manter no PC)\n")
+    print("[0] Sair do programa\n")
     
     print("O que você deseja remover do rastreamento do Git?")
-    print("1. node_modules (React Native / Node)")
-    print("2. venv (Python)")
-    print("3. Outro arquivo/pasta personalizado")
-    
-    opcao = input("\nEscolha uma opção (1-3) [padrão 1]: ").strip()
+    print("[1] node_modules (React Native / Node)")
+    print("[2] venv (Python)")
+    print("[3] Outro arquivo/pasta personalizado")
+    print("\nEscolha uma opção (0-3) [padrão 1]: ")
+    opcao = input("➔  ").strip()
     
     if opcao == '2':
         target = "venv"
     elif opcao == '3':
-        target = input("Digite o nome exato da pasta ou arquivo: ").strip()
+        print("Digite o nome exato da pasta ou arquivo: ")
+        target = input("➔  ").strip()
+    elif opcao == '0':
+        return False
     else:
         target = "node_modules"
         
@@ -202,24 +214,24 @@ def remove_cached_files():
         
         print("➔ Enviando atualização para o GitHub...")
         if run_command("git push"):
-            print(f"\n✅ SUCESSO: '{target}' foi removido do site do GitHub e continuará salvo no seu computador!")
+            print(f"\n✅  SUCESSO: '{target}' foi removido do site do GitHub e continuará salvo no seu computador!")
         else:
-            print(f"\n⚠️ O push falhou. Execute 'git push' manualmente após verificar seu repositório.")
+            print(f"\n⚠️  O push falhou. Execute 'git push' manualmente após verificar seu repositório.")
     else:
-        print(f"\n⚠️ Não foi possível remover '{target}'. Verifique se o nome está correto ou se já não foi removido.")
+        print(f"\n⚠️  Não foi possível remover '{target}'. Verifique se o nome está correto ou se já não foi removido.")
 
-def create_github_repo_online(repo_name, github_user, is_private=False):
+def create_github_repo_online(name_repositoring, github_user, is_private=False):
     """Cria o repositório diretamente no GitHub usando o GitHub CLI se disponível."""
     if check_gh_installed():
         if check_gh_authenticated():
             visibility = "--private" if is_private else "--public"
-            print(f"\n✅ Tentando criar repositório '{repo_name}' diretamente no GitHub via GitHub CLI (gh)...")
-            cmd = f"gh repo create {repo_name} {visibility} --source=. --remote=origin"
+            print(f"\n✅  Tentando criar repositório '{name_repositoring}' diretamente no GitHub via GitHub CLI (gh)...")
+            cmd = f"gh repo create {name_repositoring} {visibility} --source=. --remote=origin"
             if run_command(cmd):
-                print(f"✅ Repositório '{repo_name}' criado no GitHub com sucesso!")
+                print(f"✅  Repositório '{name_repositoring}' criado no GitHub com sucesso!")
                 return True
         else:
-            print("\nℹ️ GitHub CLI detectado, mas você não está logado.")
+            print("\n⛔ GitHub CLI detectado, mas você não está logado.")
             print("   Dica: Rode 'gh auth login' no terminal para criar repositórios automaticamente no futuro.")
     
     print("\n" + "="*60)
@@ -227,31 +239,34 @@ def create_github_repo_online(repo_name, github_user, is_private=False):
     print("="*60)
     print("Como criar o repositório manualmente no site:")
     print(f"1. Acesse: https://github.com/{github_user}")
-    print(f"2. Em 'Repository name', crie NEW repositório com nome: {repo_name}")
+    print(f"2. Em 'Repository name', crie NEW repositório com nome: {name_repositoring}")
     print("3. Escolha Public ou Private.")
     print("4. ATENÇÃO: NÃO marque 'Add a README file', NÃO adicione .gitignore e nem Licença.")
     print("   (Como já temos arquivos locais, o repositório deve ser criado VAZIO).")
     print("5. Clique no botão verde 'Create repository'.")
     print("="*60)
-    input("\nPressione ENTER assim que tiver criado o repositório no site...")
+    print("\nPressione ENTER assim que tiver criado o repositório no site...")
+    input("➔  ")
     return False
 
 def show_git_utilities():
     """Submenu de ferramentas utilitárias do Git com suporte a --no-pager."""
     while True:
-        print_header("Menu de Utilitários e Verificação Git")
-        print("1. Ver Status atual (git status)")
-        print("2. Ver Histórico resumido (git log --oneline)")
-        print("3. Ver Histórico completo (git log)")
-        print("4. Ver Histórico detalhado (git reflog)")
-        print("5. Ver Branches locais (git branch)")
-        print("6. Ver Remotos configurados (git remote -v)")
-        print("7. Criar/Alternar para nova Branch")
-        print("8. Desfazer/Resetar alterações (git reset)")
-        print("9. Apagar pasta do GitHub sem apagar do PC (ex: node_modules ou venv)")
-        print("0. Voltar ao menu principal")
+        print_header("Menu de Utilitários e Verificação Git\n")
+        print("[0] Sair do programa\n")
+        print("[1] Ver Status atual (git status)")
+        print("[2] Ver Histórico resumido (git log --oneline)")
+        print("[3] Ver Histórico completo (git log)")
+        print("[4] Ver Histórico detalhado (git reflog)")
+        print("[5] Ver Branches locais (git branch)")
+        print("[6] Ver Remotos configurados (git remote -v)")
+        print("[7] Criar/Alternar para nova Branch")
+        print("[8] Desfazer/Resetar alterações (git reset)")
+        print("[9] Apagar pasta do GitHub sem apagar do PC (ex: node_modules ou venv)")
+        print("[10] Voltar ao menu principal")
+        print("\nEscolha uma opção (0-10): ")
         
-        escolha = input("\nEscolha uma opção (0-9): ").strip()
+        escolha = input("➔  ").strip()
         
         if escolha == '1':
             run_command("git status", time_seep=2)
@@ -271,70 +286,107 @@ def show_git_utilities():
                 run_command(f"git checkout -b {branch_name}")
         elif escolha == '8':
             print("\nOpções de Reset:")
-            print("a) Reset leve (reverte commits mantendo arquivos) ➔ git reset --soft HEAD~1")
-            print("b) Reset HARD (descarta TODAS as alterações não salvas) ➔ git reset --hard HEAD")
-            sub = input("Escolha (a/b) ou ENTER para cancelar: ").strip().lower()
+            print("[a] Reset leve (reverte commits mantendo arquivos) ➔ git reset --soft HEAD~1")
+            print("[b] Reset HARD (descarta TODAS as alterações não salvas) ➔ git reset --hard HEAD")
+            print("\nEscolha (a/b) ou ENTER para cancelar: ")
+            sub = input("➔  ").strip().lower()
             if sub == 'a':
                 run_command("git reset --soft HEAD~1")
             elif sub == 'b':
-                conf = input("TEM CERTEZA? Isso apaga mudanças não salvas. (s/N): ").strip().lower()
+                print("TEM CERTEZA? Isso apaga mudanças não salvas. (s/N): ")
+                conf = input("➔  ").strip().lower()
                 if conf == 's':
                     run_command("git reset --hard HEAD")
         elif escolha == '9':
-            remove_cached_files()
-        elif escolha == '0':
+            if not remove_cached_files():
+                return False
+        elif escolha == '10':
             break
+        elif escolha == '0':
+            return False
         else:
             print("Opção inválida.")
+
+def get_name_repositoring(github_user):
+    
+    name_repositoring = Path(__file__).resolve().parent.name
+    print_header("Nome do reposirório")
+    print("\n[0] Sair do programa\n")
+
+    print(f"{name_repositoring}")
+    print(f"É o nome do repositório no github.com/{github_user}/ ? (S/n):")
+    name_response = input("➔  ").strip().lower()
+    if name_response in ['n', 'nao', 'não']:
+        while True:
+            print(f"\nQual o nome do repositório no github.com/{github_user}/ ?")
+            name_repositoring = input("➔  ").strip()
+            if not name_repositoring:
+                print("⚠️  Nome do repositório é obrigatório.")
+                continue
+            break
+    if name_response == '0':
+        return False
+    return name_repositoring
+
 
 def main():
     check_git_installed()
     
-    print_header("Assistente Automatizado de Git & GitHub")
-    print("Este script guia e executa todos os passos de Git para você.\n")
-    
-    github_user = input("Qual o nome do seu github? ").strip()
-    if not github_user:
-        github_user = "davigopi"
-        print(f"➔ Usando usuário padrão: {github_user}")
-        
+
+
+    while True:
+        print_header("Assistente Automatizado de Git & GitHub")
+        print("Este script guia e executa todos os passos de Git para você.\n")
+        print("[0] Sair do programa\n")
+        print("Qual o nome do seu usuário do github ?")
+        github_user = input("➔  ").strip()
+        if not github_user:
+            print(f"\r➔  Usuário não pode ser nulo! ", end='')
+            time.sleep(3)
+            continue
+        if github_user == '0':
+            return False
+        break
+     
     configure_git_global(github_user)
     
     while True:
         print_header("Menu Principal - Assistente Git")
-        print(f"Usuário atual: github.com/{github_user}")
-        print("-----------------------------------------------------------------")
-        print("Existe repositório em github.com? ")
+        print(f"\nUsuário atual: {github_user}")
+        print("[0] Sair do programa\n")
+        print(f"Existe repositório em github.com/{github_user}/ ? ")
         print("[S] Sim, repositório já existe")
         print("[N] Não, quero criar um repositório novo")
         print("[U] Abrir menu de Utilitários diretos")
-        print("[0] Sair do programa")
+        print("\nEscolha uma opção (S/N/U/0):")
+        exist_repositoriong = input("➔  ").strip().lower()
         
-        existe_repo = input("\nEscolha uma opção (S/N/U/0): ").strip().lower()
-        
-        if existe_repo in ['s', 'sim']:
-            repo_name = input(f"\nQual o nome do repositório que já existe no github.com/{github_user}? ").strip()
-            if not repo_name:
-                print("⚠️ Nome do repositório é obrigatório.")
-                continue
+        if exist_repositoriong in ['s', 'sim']:
+            name_repositoring = get_name_repositoring(github_user)
+            if not name_repositoring:
+                return False
+            
+            repo_url = f"https://github.com/{github_user}/{name_repositoring}.git"
+            
 
-            repo_url = f"https://github.com/{github_user}/{repo_name}.git"
+            print_header("Menu Principal - Assistente Git")
+            print("[0] Sair do programa\n")
+            print(f"\nO que você deseja fazer com o repositório '{name_repositoring}' ?")
+            print("[1] CLONAR o repositório do GitHub para este computador")
+            print("[2] ENVIAR os arquivos deste computador para o GitHub")
+            print("[3] Abrir menu de Utilitários / Verificações do Git")
+            print("[4] Voltar ao menu principal")
+            print("\nEscolha uma opção (1, 2, 3, 4 ou 0): ")
             
-            print(f"\nO que você deseja fazer com o repositório '{repo_name}'?")
-            print("1. CLONAR o repositório do GitHub para este computador")
-            print("2. ENVIAR os arquivos deste computador para o GitHub")
-            print("3. Abrir menu de Utilitários / Verificações do Git")
-            print("0. Voltar ao menu principal")
-            
-            acao = input("\nEscolha uma opção (1, 2, 3 ou 0): ").strip()
+            acao = input("➔  ").strip()
             
             if acao == '1':
                 confirm_working_directory()
                 print_header("Clonando Repositório")
                 cmd = f"git clone {repo_url}"
                 if run_command(cmd):
-                    print(f"\n✅ Repositório '{repo_name}' clonado com sucesso!")
-                    print(f"   Ele foi baixado em: {os.path.join(os.getcwd(), repo_name)}")
+                    print(f"\n✅ Repositório '{name_repositoring}' clonado com sucesso!")
+                    print(f"   Ele foi baixado em: {os.path.join(os.getcwd(), name_repositoring)}")
                 
             elif acao == '2':
                 confirm_working_directory()
@@ -380,22 +432,28 @@ def main():
                     
                 print("\n✅  Processo concluído com sucesso!")
 
+
             elif acao == '3':
-                show_git_utilities()
-            elif acao == '0':
+                if not show_git_utilities():
+                    return False
+
+            elif acao == '4':
                 continue
 
-        elif existe_repo in ['n', 'nao', 'não']:
+            elif acao == '0':
+                return False
+
+        elif exist_repositoriong in ['n', 'nao', 'não']:
             confirm_working_directory()
             print_header("Criando Novo Repositório")
-            repo_name = input(f"Qual o nome do repositório que você quer criar em github.com/{github_user}? ").strip()
-            if not repo_name:
-                print("⚠️ Nome do repositório é obrigatório.")
-                continue
-
-            repo_url = f"https://github.com/{github_user}/{repo_name}.git"
+            name_repositoring = get_name_repositoring(github_user)
+            if not name_repositoring:
+                return False
             
-            cli_created = create_github_repo_online(repo_name, github_user)
+            repo_url = f"https://github.com/{github_user}/{name_repositoring}.git"
+
+            
+            cli_created = create_github_repo_online(name_repositoring, github_user)
             
             create_gitignore_if_missing()
             
@@ -428,15 +486,15 @@ def main():
             print("➔  Enviano arquivos para o GitHub.")
             
             if success:
-                print(f"\n✅  Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{repo_name}")
+                print(f"\n✅  Sucesso! Seu novo repositório está publicado em: https://github.com/{github_user}/{name_repositoring}")
             else:
-                print(f"\n⚠️  O push não foi concluído. Verifique se o repositório (https://github.com/{github_user}/{repo_name}) foi criado corretamente no site do GitHub.")
+                print(f"\n⚠️  O push não foi concluído. Verifique se o repositório (https://github.com/{github_user}/{name_repositoring}) foi criado corretamente no site do GitHub.")
 
-        elif existe_repo in ['u', 'utilitarios', 'utilitários']:
+        elif exist_repositoriong in ['u', 'utilitarios', 'utilitários']:
             show_git_utilities()
 
-        elif existe_repo == '0':
-            break
+        elif exist_repositoriong == '0':
+            return False
         else:
             print("Opção inválida. Tente novamente.")
 
