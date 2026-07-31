@@ -4,19 +4,18 @@ TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
 ## 1. ESTRUTURA DA PASTA DO PROJETO LOCAL
 ---------------------------------------------------------
 Crie uma pasta com o nome git_dgp e coloque os dois arquivos dentro dela:
-'''
+```
 git_dgp/
 
-├── git.py          <-- O seu código da ferramenta Git
+  ├── git.py          <-- O seu código da ferramenta Git
 
-└── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
-'''
-
-
+  └── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
+```
 
 ---------------------------------------------------------
 ## 2. CONTEÚDO DO ARQUIVO pyproject.toml
 ---------------------------------------------------------
+```
 (Salve o texto abaixo exatamente com o nome pyproject.toml na raiz da pasta)
 
 [build-system]
@@ -32,7 +31,7 @@ py-modules = ["git"]
 
 [project.scripts]
 git_dgp = "git:main"
-
+```
 ---------------------------------------------------------
 ## 3. PUBLICAR NO GITHUB
 ---------------------------------------------------------
@@ -68,8 +67,8 @@ atualizar no seu computador:
 
 pip install --upgrade git+https://github.com/davigopi/git_dgp.git
 
-<br>
-<br>
+---------------------------------------------------------
+---------------------------------------------------------
 
 GUIA GIT – ORDEM NATURAL DE EXECUÇÃO (REVISADO)
 =========================================================
