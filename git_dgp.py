@@ -184,7 +184,7 @@ def remove_cached_files():
     print_header("Remover pasta/arquivo do GitHub (Manter no PC)\n")
     print("[0] Sair do programa\n")
     
-    print("O que você deseja remover do rastreamento do Git?")
+    print("O que você deseja remover do rastreamento do Git ?")
     print("[1] node_modules (React Native / Node)")
     print("[2] venv (Python)")
     print("[3] Outro arquivo/pasta personalizado")
@@ -368,10 +368,9 @@ def main():
             
             repo_url = f"https://github.com/{github_user}/{name_repositoring}.git"
             
-
-            print_header("Menu Principal - Assistente Git")
+            print_header("Menu Principal - Assistente Git\n")
             print("[0] Sair do programa\n")
-            print(f"\nO que você deseja fazer com o repositório '{name_repositoring}' ?")
+            print(f"O que você deseja fazer com o repositório '{name_repositoring}' ?")
             print("[1] CLONAR o repositório do GitHub para este computador")
             print("[2] ENVIAR os arquivos deste computador para o GitHub")
             print("[3] Abrir menu de Utilitários / Verificações do Git")
