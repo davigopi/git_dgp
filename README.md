@@ -32,29 +32,20 @@ py-modules = ["git"]
 [project.scripts]
 git_dgp = "git:main"
 
-
-
-
-#3. PUBLICAR NO GITHUB
+##3. PUBLICAR NO GITHUB
 -------------------------------------------------------------------------------
 Crie o repositório público ou privado no GitHub com o nome git_dgp e suba 
 a pasta criada:
 
 URL do repositório: https://github.com/davigopi/git_dgp
 
-
-
-
-#4. INSTALAR A FERRAMENTA NO COMPUTADOR
+##4. INSTALAR A FERRAMENTA NO COMPUTADOR
 -------------------------------------------------------------------------------
 Abra qualquer terminal no seu computador e execute:
 
 pip install git+https://github.com/davigopi/git_dgp.git
 
-
-
-
-#5. COMO USAR NOS SEUS PROJETOS
+##5. COMO USAR NOS SEUS PROJETOS
 -------------------------------------------------------------------------------
 - Via terminal (em qualquer pasta de projeto React Native, Python, etc.):
   Basta abrir o terminal na pasta desejada e digitar:
@@ -64,21 +55,13 @@ pip install git+https://github.com/davigopi/git_dgp.git
 - Via importação dentro de scripts Python futuros:
   from git import run_command, create_gitignore_if_missing
 
-
-#6. ATUALIZAR A FERRAMENTA NO FUTURO
+##6. ATUALIZAR A FERRAMENTA NO FUTURO
 -------------------------------------------------------------------------------
 Sempre que fizer uma melhoria no script original, suba as alterações para o 
 GitHub no repositório git_dgp e execute o comando abaixo no terminal para 
 atualizar no seu computador:
 
 pip install --upgrade git+https://github.com/davigopi/git_dgp.git
-
-
-
-
-
-
-
 
 
 GUIA GIT – ORDEM NATURAL DE EXECUÇÃO (REVISADO)
@@ -91,8 +74,8 @@ Comandos substituídos estão comentados apenas para referência.
 instalar git: https://git-scm.com/install/windows?utm_source=copilot.com
 
 ---------------------------------------------------------
-1) CRIAR REPOSITÓRIO NO GITHUB
----------------------------------------------------------
+##1) CRIAR REPOSITÓRIO NO GITHUB
+--------------------------------------------------------
 
 ➔  Vá até github.com
 ➔  Clique em "New Repository"
@@ -101,7 +84,7 @@ instalar git: https://git-scm.com/install/windows?utm_source=copilot.com
 
 
 ---------------------------------------------------------
-2) CRIAR .gitignore (ANTES DO PRIMEIRO COMMIT)
+##2) CRIAR .gitignore (ANTES DO PRIMEIRO COMMIT)
 ---------------------------------------------------------
 
 ➔  Criar arquivo .gitignore na raiz
@@ -113,7 +96,7 @@ instalar git: https://git-scm.com/install/windows?utm_source=copilot.com
 ➔  senha.txt
 
 ---------------------------------------------------------
-3) INICIAR REPOSITÓRIO LOCAL
+##3) INICIAR REPOSITÓRIO LOCAL
 ---------------------------------------------------------
 
 git init
@@ -123,7 +106,7 @@ git status
 ➔  Verifica status do repositório
 
 ---------------------------------------------------------
-4) CONFIGURAÇÃO INICIAL DO GIT (Executar uma vez no PC)
+##4) CONFIGURAÇÃO INICIAL DO GIT (Executar uma vez no PC)
 ---------------------------------------------------------
 
 git --help
@@ -140,7 +123,7 @@ git config --global init.defaultBranch main
 
 
 ---------------------------------------------------------
-5) ADICIONAR ARQUIVOS
+##5) ADICIONAR ARQUIVOS
 ---------------------------------------------------------
 
 git add .
@@ -154,7 +137,7 @@ git rm --cached -r nome_pasta
 
 
 ---------------------------------------------------------
-6) FAZER COMMIT INICIAL
+##6) FAZER COMMIT INICIAL
 ---------------------------------------------------------
 
 git commit -m "Initial commit"
@@ -162,7 +145,7 @@ git commit -m "Initial commit"
 
 
 ---------------------------------------------------------
-7) CONFIGURAR REPOSITÓRIO REMOTO (ORIGIN)
+##7) CONFIGURAR REPOSITÓRIO REMOTO (ORIGIN)
 ---------------------------------------------------------
 
 git remote -v
@@ -182,7 +165,7 @@ git remote rename origin old-origin
 
 
 ---------------------------------------------------------
-8) GARANTIR BRANCH PRINCIPAL
+##8) GARANTIR BRANCH PRINCIPAL
 ---------------------------------------------------------
 
 git branch
@@ -196,7 +179,7 @@ git branch -M main
 
 
 ---------------------------------------------------------
-9) ENVIAR PARA O GITHUB
+##9) ENVIAR PARA O GITHUB
 ---------------------------------------------------------
 
 git push -u origin main
@@ -210,7 +193,7 @@ git push
 
 
 ---------------------------------------------------------
-10) CLONAR REPOSITÓRIO EXISTENTE (ALTERNATIVA)
+##10) CLONAR REPOSITÓRIO EXISTENTE (ALTERNATIVA)
 ---------------------------------------------------------
 
 git clone https://github.com/davigopi/agenda_django.git
@@ -221,7 +204,7 @@ git clone
 
 
 ---------------------------------------------------------
-11) COMANDOS DE VERIFICAÇÃO
+##11) COMANDOS DE VERIFICAÇÃO
 ---------------------------------------------------------
 
 git status
@@ -244,7 +227,7 @@ git reflog
 
 
 ---------------------------------------------------------
-12) TRABALHANDO COM BRANCHES
+##12) TRABALHANDO COM BRANCHES
 ---------------------------------------------------------
 
 git branch nome_da_branch
@@ -261,7 +244,7 @@ git merge nome_da_branch
 
 
 ---------------------------------------------------------
-13) RESETAR COMMITS
+##13) RESETAR COMMITS
 ---------------------------------------------------------
 
 git reset --hard HASH
@@ -275,7 +258,7 @@ git reset --soft HEAD~2
 
 
 ---------------------------------------------------------
-14) REVERTER COMMITS (MANTENDO HISTÓRICO)
+##14) REVERTER COMMITS (MANTENDO HISTÓRICO)
 ---------------------------------------------------------
 
 git revert HEAD
@@ -289,7 +272,7 @@ git revert --abort
 
 
 ---------------------------------------------------------
-15) PROBLEMAS COM PUSH
+##15) PROBLEMAS COM PUSH
 ---------------------------------------------------------
 
 git status
@@ -306,7 +289,7 @@ git push -u origin main
 
 
 ---------------------------------------------------------
-16) SITUAÇÕES ESPECIAIS (CUIDADO)
+##16) SITUAÇÕES ESPECIAIS (CUIDADO)
 ---------------------------------------------------------
 
 git push -u origin main --force
@@ -316,5 +299,6 @@ git pull origin main --allow-unrelated-histories
 ➔  Junta históricos diferentes quando há conflito inicial
 
 
-
-FIM DO DOCUMENTO
+---------------------------------------------------------
+##FIM DO DOCUMENTO
+---------------------------------------------------------
