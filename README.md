@@ -6,8 +6,12 @@ TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
 Crie uma pasta com o nome git_dgp e coloque os dois arquivos dentro dela:
 
 git_dgp/
+
 ├── git.py          <-- O seu código da ferramenta Git
+
 └── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
+
+
 
 
 2. CONTEÚDO DO ARQUIVO pyproject.toml
@@ -29,6 +33,8 @@ py-modules = ["git"]
 git_dgp = "git:main"
 
 
+
+
 3. PUBLICAR NO GITHUB
 -------------------------------------------------------------------------------
 Crie o repositório público ou privado no GitHub com o nome git_dgp e suba 
@@ -37,11 +43,15 @@ a pasta criada:
 URL do repositório: https://github.com/davigopi/git_dgp
 
 
+
+
 4. INSTALAR A FERRAMENTA NO COMPUTADOR
 -------------------------------------------------------------------------------
 Abra qualquer terminal no seu computador e execute:
 
 pip install git+https://github.com/davigopi/git_dgp.git
+
+
 
 
 5. COMO USAR NOS SEUS PROJETOS
