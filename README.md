@@ -1,13 +1,13 @@
-TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (git_dgp)
+TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (nome_do_projeto)
 ===============================================================================
 ---------------------------------------------------------
 ## 1. ESTRUTURA DA PASTA DO PROJETO LOCAL
 ---------------------------------------------------------
-Crie uma pasta com o nome git_dgp e coloque os dois arquivos dentro dela:
+Crie uma pasta com o nome nome_do_projeto e coloque os dois arquivos dentro dela:
 ```
-git_dgp/
+nome_do_projeto/
 
-  ├── git.py          <-- O seu código da ferramenta Git
+  ├── nome_do_projeto.py          <-- O seu código da ferramenta Git
 
   └── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
 ```
@@ -23,19 +23,19 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "git_dgp"
+name = "nome_do_projeto"
 version = "0.1.0"
 description = "Assistente automatizado de Git e GitHub"
 authors = [{ name = "Davi" }]
 py-modules = ["git"]
 
 [project.scripts]
-git_dgp = "git:main"
+nome_do_projeto = "git:main"
 ```
 ---------------------------------------------------------
 ## 3. PUBLICAR NO GITHUB
 ---------------------------------------------------------
-Crie o repositório público ou privado no GitHub com o nome git_dgp e suba 
+Crie o repositório público ou privado no GitHub com o nome nome_do_projeto e suba 
 a pasta criada:
 
 URL do repositório: https://github.com/user_github/nome_do_projeto
@@ -53,7 +53,7 @@ pip install git+https://github.com/user_github/nome_do_projeto.git
 - Via terminal (em qualquer pasta de projeto React Native, Python, etc.):
   Basta abrir o terminal na pasta desejada e digitar:
 
-  git_dgp
+  nome_do_projeto
 
 - Via importação dentro de scripts Python futuros:
   from git import run_command, create_gitignore_if_missing
@@ -62,7 +62,7 @@ pip install git+https://github.com/user_github/nome_do_projeto.git
 ## 6. ATUALIZAR A FERRAMENTA NO FUTURO
 ---------------------------------------------------------
 Sempre que fizer uma melhoria no script original, suba as alterações para o 
-GitHub no repositório git_dgp e execute o comando abaixo no terminal para 
+GitHub no repositório nome_do_projeto e execute o comando abaixo no terminal para 
 atualizar no seu computador:
 
 pip install --upgrade git+https://github.com/user_github/nome_do_projeto.git
