@@ -15,6 +15,10 @@
 
 Quanto mais `#`, menor o título.
 
+# Título 1
+## Título 2
+### Título 3
+
 ---
 
 ### Usando `===`
@@ -23,12 +27,15 @@ Quanto mais `#`, menor o título.
 Título Principal
 ================
 ```
+Título Principal
+================
 
 Equivale a:
 
 ```md
 # Título Principal
 ```
+# Título Principal
 
 ---
 
@@ -44,7 +51,8 @@ Equivale a:
 ```md
 ## Subtítulo
 ```
-
+Subtítulo
+----------
 ---
 
 ## 2. Negrito
@@ -58,7 +66,7 @@ ou
 ```md
 __Texto em negrito__
 ```
-
+**Texto em negrito**
 ---
 
 ## 3. Itálico
@@ -72,7 +80,7 @@ ou
 ```md
 _Texto em itálico_
 ```
-
+*Texto em itálico*
 ---
 
 ## 4. Negrito + Itálico
@@ -80,6 +88,8 @@ _Texto em itálico_
 ```md
 ***Texto em negrito e itálico***
 ```
+***Texto em negrito e itálico***
+
 
 ---
 
@@ -88,6 +98,7 @@ _Texto em itálico_
 ```md
 ~~Texto removido~~
 ```
+~~Texto removido~~
 
 ---
 
@@ -124,10 +135,14 @@ ___
 Também funciona:
 
 ```md
-* Item
-+ Item
+* Item 4
++ Item 5
 ```
-
+- Item 1
+- Item 2
+- Item 3
+* Item 4
++ Item 5
 ---
 
 ## Lista numerada
@@ -485,297 +500,3 @@ Descrição do projeto.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 📖 Guia de Markdown para README.md
-
-> Este arquivo serve como referência rápida de Markdown no GitHub.
-
-## 1. Títulos
-
-### Código
-
-````md
-# Título 1
-## Título 2
-### Título 3
-````
-
-### Resultado
-
-# Título 1
-## Título 2
-### Título 3
-
----
-
-## 2. Negrito
-
-### Código
-
-```md
-**Texto em negrito**
-```
-
-### Resultado
-
-**Texto em negrito**
-
----
-
-## 3. Itálico
-
-### Código
-
-```md
-*Texto em itálico*
-```
-
-### Resultado
-
-*Texto em itálico*
-
----
-
-## 4. Negrito + Itálico
-
-### Código
-
-```md
-***Texto***
-```
-
-### Resultado
-
-***Texto***
-
----
-
-## 5. Riscado
-
-### Código
-
-```md
-~~Texto~~
-```
-
-### Resultado
-
-~~Texto~~
-
----
-
-## 6. Linha horizontal
-
-### Código
-
-```md
----
-```
-
-### Resultado
-
----
-
-## 7. Lista
-
-### Código
-
-```md
-- Item A
-- Item B
-```
-
-### Resultado
-
-- Item A
-- Item B
-
----
-
-## 8. Lista numerada
-
-### Código
-
-```md
-1. Um
-2. Dois
-```
-
-### Resultado
-
-1. Um
-2. Dois
-
----
-
-## 9. Checklist
-
-### Código
-
-```md
-- [x] Feito
-- [ ] Pendente
-```
-
-### Resultado
-
-- [x] Feito
-- [ ] Pendente
-
----
-
-## 10. Código inline
-
-### Código
-
-```md
-Use `git status`.
-```
-
-### Resultado
-
-Use `git status`.
-
----
-
-## 11. Bloco de código
-
-````md
-```python
-print("Olá")
-```
-````
-
-### Resultado
-
-```python
-print("Olá")
-```
-
----
-
-## 12. Link
-
-### Código
-
-```md
-[GitHub](https://github.com)
-```
-
-### Resultado
-
-[GitHub](https://github.com)
-
----
-
-## 13. Imagem
-
-### Código
-
-```md
-![Logo](logo.png)
-```
-
-### Resultado
-
-_Renderizada quando existir a imagem._
-
----
-
-## 14. Tabela
-
-### Código
-
-```md
-| Nome | Idade |
-|------|------:|
-| João | 20 |
-```
-
-### Resultado
-
-| Nome | Idade |
-|------|------:|
-| João | 20 |
-
----
-
-## 15. Citação
-
-### Código
-
-```md
-> Aviso
-```
-
-### Resultado
-
-> Aviso
-
----
-
-## 16. HTML
-
-### Código
-
-```html
-<details>
-<summary>Clique aqui</summary>
-
-Texto escondido.
-
-</details>
-```
-
-### Resultado
-
-<details>
-<summary>Clique aqui</summary>
-
-Texto escondido.
-
-</details>
-
----
-
-## 17. Emojis
-
-### Código
-
-```md
-🚀 Projeto
-```
-
-### Resultado
-
-🚀 Projeto
-
----
-
-## 18. Estrutura recomendada
-
-```text
-README.md
-├── Descrição
-├── Instalação
-├── Uso
-├── Tecnologias
-├── Exemplos
-├── Licença
-└── Contribuição
-```
