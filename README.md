@@ -16,21 +16,17 @@ nome_do_projeto/
 ## 2. CONTEÚDO DO ARQUIVO pyproject.toml
 ---------------------------------------------------------
 ```
-(Salve o texto abaixo exatamente com o nome pyproject.toml na raiz da pasta)
-
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nome_do_projeto"
+name = "git_dgp"
 version = "0.1.0"
-description = "Assistente automatizado de Git e GitHub"
-authors = [{ name = "Davi" }]
-py-modules = ["git"]
+dependencies = []
 
-[project.scripts]
-nome_do_projeto = "git:main"
+[tool.setuptools]
+py-modules = ["git_dgp"]
 ```
 ---------------------------------------------------------
 ## 3. PUBLICAR NO GITHUB
