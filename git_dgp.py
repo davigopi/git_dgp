@@ -307,13 +307,14 @@ def show_git_utilities():
             print("Opção inválida.")
 
 def get_name_repositoring(github_user):
-    
-    name_repositoring = Path(__file__).resolve().parent.name
-    print_header("Nome do reposirório")
+    # Pega o nome da pasta atual onde o usuário está executando o comando
+    name_repositoring = Path(os.getcwd()).name
+    print_header("Nome do repositório")
 
-    print(f"{name_repositoring}")
-    print(f"É o nome do repositório no github.com/{github_user}/ ? (S/n):")
+    print(f"Repositório padrão detectado: {name_repositoring}")
+    print(f"Confirma o nome do repositório em github.com/{github_user}/{name_repositoring}? (S/n):")
     name_response = input("➔  ").strip().lower()
+    
     if name_response in ['n', 'nao', 'não']:
         while True:
             print(f"\nQual o nome do repositório no github.com/{github_user}/ ?")
@@ -323,9 +324,8 @@ def get_name_repositoring(github_user):
                 continue
             break
     if name_response == '0':
-        return False
+        return None
     return name_repositoring
-
 
 def main():
     check_git_installed()
