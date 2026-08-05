@@ -5,9 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "git_dgp"
 version = "0.1.0"
-description = "Assistente automatizado de Git e GitHub"
-authors = [{ name = "Davi" }]
-py-modules = ["git"]
+dependencies = []
 
-[project.scripts]
-git_dgp = "git:main"
+[tool.setuptools]
+py-modules = ["git_dgp"]
