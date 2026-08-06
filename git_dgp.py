@@ -17,7 +17,7 @@ from datetime import datetime
 from pathlib import Path
 
 def print_header(title):
-    # os.system('cls')
+    os.system('cls')
     print("\n" + "=" * 65)
     print(f"  {title.upper()}")
     print("=" * 65 + "\n")
@@ -75,7 +75,8 @@ def confirm_working_directory():
     while True:
         current_dir = os.getcwd()
 
-        print(f"Deseja executar a ação na pasta {current_dir}? [S/n]: ")
+        print(f"\n{10*'#'} {current_dir} {10*'#'}")
+        print(f"É a pasta para vincular com o github ? [S/n]: ")
         opcao = input("➔  ").strip().lower()
         
         if opcao not in ['n', 'nao', 'não']:
@@ -99,9 +100,9 @@ def configure_git_global(username):
     
     current_user = run_command("git config --global user.name", show_output=False, capture=True, verbose=False)
     current_email = run_command("git config --global user.email", show_output=False, capture=True, verbose=False)
-    
-    print(f"Nome global atual : {current_user if current_user else 'Não configurado'}")
-    print(f"Email global atual: {current_email if current_email else 'Não configurado'}")
+
+    print(f"\n{10*'#'} {(current_user if current_user else 'Não configurado'):<20} {10*'#'}")
+    print(f"{10*'#'} {(current_email if current_email else 'Não configurado'):<20} {10*'#'}")
     
     if not current_user or not current_email:
         print("\nConfigurando credenciais globais do Git...")
@@ -112,7 +113,7 @@ def configure_git_global(username):
         run_command('git config --global init.defaultBranch main')
         print("✅ Configuração global salva com sucesso!")
     else:
-        print("\nDeseja atualizar suas configurações globais (Nome/Email) ? (s/N)")
+        print("Deseja atualizar suas configurações globais (Nome ou Email) ? (s/N)")
         opcao = input("➔  ").strip().lower()
         if opcao == 's':
             print(f"Novo user.name [{current_user}]:")
@@ -310,9 +311,8 @@ def get_name_repositoring(github_user):
     # Pega o nome da pasta atual onde o usuário está executando o comando
     name_repositoring = Path(os.getcwd()).name
     print_header("Nome do repositório")
-
-    print(f"Repositório padrão detectado: {name_repositoring}")
-    print(f"Confirma o nome do repositório em github.com/{github_user}/{name_repositoring}? (S/n):")
+    print(f"{10*'#'} {name_repositoring} {10*'#'}")
+    print(f"Confirma se é o nome repositório em github.com/{github_user}/ ? (S/n):")
     name_response = input("➔  ").strip().lower()
     
     if name_response in ['n', 'nao', 'não']:

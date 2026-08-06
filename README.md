@@ -1,71 +1,26 @@
-TUTORIAL: CRIAR E CENTRALIZAR A BIBLIOTECA E COMANDO CLI (nome_do_projeto)
+TUTORIAL: UTILIZAÇÃO git_dgp (nome_do_projeto)
 ===============================================================================
----------------------------------------------------------
-## 1. ESTRUTURA DA PASTA DO PROJETO LOCAL
----------------------------------------------------------
-Crie uma pasta com o nome nome_do_projeto e coloque os dois arquivos dentro dela:
-```
-nome_do_projeto/
-
-  ├── nome_do_projeto.py          <-- O seu código da ferramenta Git
-
-  └── pyproject.toml  <-- Arquivo de configuração da biblioteca Python
-```
 
 ---------------------------------------------------------
-## 2. CONTEÚDO DO ARQUIVO pyproject.toml
----------------------------------------------------------
-```
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "git_dgp"
-version = "0.1.0"
-dependencies = []
-
-[tool.setuptools]
-py-modules = ["git_dgp"]
-```
----------------------------------------------------------
-## 3. PUBLICAR NO GITHUB
----------------------------------------------------------
-Crie o repositório público ou privado no GitHub com o nome nome_do_projeto e suba 
-a pasta criada:
-
-URL do repositório: https://github.com/user_github/nome_do_projeto
-
----------------------------------------------------------
-## 4. INSTALAR A FERRAMENTA NO COMPUTADOR
+## 1. INSTALAR A FERRAMENTA NO COMPUTADOR
 ---------------------------------------------------------
 Abra qualquer terminal no seu computador e execute:
 
-pip install git+https://github.com/user_github/nome_do_projeto.git
-
-Exemplo: pip install git+https://github.com/davigopi/git_dgp.git
+pip install git+https://github.com/davigopi/git_dgp.git
 
 ---------------------------------------------------------
-## 5. COMO USAR NOS SEUS PROJETOS
----------------------------------------------------------
-- Via terminal (em qualquer pasta de projeto React Native, Python, etc.):
-  Basta abrir o terminal na pasta desejada e digitar:
-
-  nome_do_projeto
-
-- Via importação dentro de scripts Python futuros:
-  from git import run_command, create_gitignore_if_missing
-
----------------------------------------------------------
-## 6. ATUALIZAR A FERRAMENTA NO FUTURO
+## 2. ATUALIZAR A FERRAMENTA NO FUTURO
 ---------------------------------------------------------
 Sempre que fizer uma melhoria no script original, suba as alterações para o 
 GitHub no repositório nome_do_projeto e execute o comando abaixo no terminal para 
 atualizar no seu computador:
 
-pip install --upgrade git+https://github.com/user_github/nome_do_projeto.git
+pip install --upgrade git+https://github.com/davigopi/git_dgp.git
 
-Exemplo: pip install --upgrade git+https://github.com/davigopi/git_dgp.git
+---------------------------------------------------------
+## 3. EXECUTAR COMANDO NO PROJETO
+---------------------------------------------------------
+python -m git_dgp
 
 ---------------------------------------------------------
 ---------------------------------------------------------
