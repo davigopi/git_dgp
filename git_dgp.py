@@ -16,6 +16,8 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+dir_confirmado= False
+
 def print_header(title):
     os.system('cls')
     print("\n" + "=" * 65)
@@ -71,6 +73,10 @@ def check_gh_authenticated():
     return bool(res)
 
 def confirm_working_directory():
+    global dir_confirmado
+    if dir_confirmado:
+        return 
+
     """Exibe e confirma/altera o diretório de trabalho local do projeto com validação."""
     while True:
         current_dir = os.getcwd()
@@ -93,6 +99,7 @@ def confirm_working_directory():
         else:
             print("\n❌ ERRO: Caminho inválido ou pasta não encontrada!")
             print("Por favor, tente novamente digitando o caminho correto ou confirme a pasta atual.")
+    dir_confirmado = True
 
 def configure_git_global(username):
     """Configura o usuário e branch padrão se necessário."""
