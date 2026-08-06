@@ -43,7 +43,7 @@ Abra qualquer terminal no seu computador e execute:
 
 pip install git+https://github.com/user_github/nome_do_projeto.git
 
-exemplo: git+https://github.com/davigopi/git_dgp.git
+Exemplo: pip install git+https://github.com/davigopi/git_dgp.git
 
 ---------------------------------------------------------
 ## 5. COMO USAR NOS SEUS PROJETOS
