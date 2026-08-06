@@ -116,9 +116,9 @@ def configure_git_global(username):
         print("Deseja atualizar suas configurações globais (Nome ou Email) ? (s/N)")
         opcao = input("➔  ").strip().lower()
         if opcao == 's':
-            print(f"Novo user.name [{current_user}]:")
+            print(f"\nQual o novo user.name [{current_user}] ?")
             novo_nome = input("➔  ").strip() or current_user
-            print(f"Novo user.email [{current_email}]: ")
+            print(f"\nQual o novo user.email [{current_email}] ?")
             novo_email = input("➔  ").strip() or current_email
             run_command(f'git config --global user.name "{novo_nome}"')
             run_command(f'git config --global user.email "{novo_email}"')
