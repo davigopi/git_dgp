@@ -16,7 +16,9 @@ GitHub no repositório nome_do_projeto e execute o comando abaixo no terminal pa
 atualizar no seu computador:
 
 pip install --force-reinstall git+https://github.com/davigopi/git_dgp.git
+
 ou
+
 pip install --upgrade --no-cache-dir git+https://github.com/davigopi/git_dgp.git
 
 
