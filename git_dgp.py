@@ -17,7 +17,7 @@ from datetime import datetime
 from pathlib import Path
 
 def print_header(title):
-    os.system('cls')
+    # os.system('cls')
     print("\n" + "=" * 65)
     print(f"  {title.upper()}")
     print("=" * 65 + "\n")
@@ -356,6 +356,10 @@ def main():
         exist_repositoriong = input("➔  ").strip().lower()
         
         if exist_repositoriong in ['s', 'sim']:
+            # 1. Primeiro confirma/altera o diretório de trabalho local
+            confirm_working_directory()
+            
+            # 2. Agora obtém o nome correto baseado no diretório ajustado
             name_repositoring = get_name_repositoring(github_user)
             if not name_repositoring:
                 return False
