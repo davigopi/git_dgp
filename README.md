@@ -65,6 +65,8 @@ atualizar no seu computador:
 
 pip install --upgrade git+https://github.com/user_github/nome_do_projeto.git
 
+Exemplo: pip install --upgrade git+https://github.com/davigopi/git_hub.git
+
 ---------------------------------------------------------
 ---------------------------------------------------------
 
