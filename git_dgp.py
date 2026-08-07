@@ -16,14 +16,14 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-dir_confirmado= False
+
 
 def print_header(title):
     os.system('cls')
-    print("\n" + "=" * 65)
+    print("=" * 60)
     print(f"  {title.upper()}")
-    print("=" * 65 + "\n")
-    print("[0] Sair do programa\n")
+    print("_" * 60)
+    print(' ' * 52 + "Sair [x]")
 
 
 def run_command(command, show_output=True, capture=False, verbose=True, time_seep=0):
@@ -72,65 +72,9 @@ def check_gh_authenticated():
     res = run_command("gh auth status", show_output=False, capture=True, verbose=False)
     return bool(res)
 
-def confirm_working_directory():
-    global dir_confirmado
-    if dir_confirmado:
-        return 
 
-    """Exibe e confirma/altera o diretório de trabalho local do projeto com validação."""
-    while True:
-        current_dir = os.getcwd()
 
-        print(f"\n{10*'#'} {current_dir} {10*'#'}")
-        print(f"É a pasta para vincular com o github ? [S/n]: ")
-        opcao = input("➔  ").strip().lower()
-        
-        if opcao not in ['n', 'nao', 'não']:
-            print(f"✅ Usando diretório: {current_dir}")
-            break
 
-        print("\n⌨️  Digite ou cole o caminho completo da pasta desejada: ")
-        novo_caminho = input("➔  ").strip().strip('"')
-        
-        if os.path.exists(novo_caminho) and os.path.isdir(novo_caminho):
-            os.chdir(novo_caminho)
-            print(f"✅ Diretório alterado com sucesso para: {os.getcwd()}")
-            break
-        else:
-            print("\n❌ ERRO: Caminho inválido ou pasta não encontrada!")
-            print("Por favor, tente novamente digitando o caminho correto ou confirme a pasta atual.")
-    dir_confirmado = True
-
-def configure_git_global(username):
-    """Configura o usuário e branch padrão se necessário."""
-    print_header("Configuração Global do Git")
-    
-    current_user = run_command("git config --global user.name", show_output=False, capture=True, verbose=False)
-    current_email = run_command("git config --global user.email", show_output=False, capture=True, verbose=False)
-
-    print(f"\n{10*'#'} {(current_user if current_user else 'Não configurado'):<20} {10*'#'}")
-    print(f"{10*'#'} {(current_email if current_email else 'Não configurado'):<20} {10*'#'}")
-    
-    if not current_user or not current_email:
-        print("\nConfigurando credenciais globais do Git...")
-        print(f"Informe o seu e-mail do GitHub (ex: {username}@gmail.com): ")
-        email = input("➔  ").strip()
-        run_command(f'git config --global user.name "{username}"')
-        run_command(f'git config --global user.email "{email}"')
-        run_command('git config --global init.defaultBranch main')
-        print("✅ Configuração global salva com sucesso!")
-    else:
-        print("Deseja atualizar suas configurações globais (Nome ou Email) ? (s/N)")
-        opcao = input("➔  ").strip().lower()
-        if opcao == 's':
-            print(f"\nQual o novo user.name [{current_user}] ?")
-            novo_nome = input("➔  ").strip() or current_user
-            print(f"\nQual o novo user.email [{current_email}] ?")
-            novo_email = input("➔  ").strip() or current_email
-            run_command(f'git config --global user.name "{novo_nome}"')
-            run_command(f'git config --global user.email "{novo_email}"')
-            run_command('git config --global init.defaultBranch main')
-            print("✅ Configuração global atualizada!")
 
 def create_gitignore_if_missing():
     """Cria ou atualiza o .gitignore para suportar tanto Python quanto React Native/Node."""
@@ -204,7 +148,7 @@ def remove_cached_files():
     elif opcao == '3':
         print("Digite o nome exato da pasta ou arquivo: ")
         target = input("➔  ").strip()
-    elif opcao == '0':
+    elif opcao == 'x':
         return False
     else:
         target = "node_modules"
@@ -309,19 +253,105 @@ def show_git_utilities():
                 return False
         elif escolha == '10':
             break
-        elif escolha == '0':
+        elif escolha == 'x':
             return False
         else:
             print("Opção inválida.")
+
+def get_name_user():
+    while True:
+        print_header("Assistente Automatizado de Git & GitHub")
+        github_user = run_command("git config --global user.name", show_output=False, capture=True, verbose=False)
+        print(f"{10*'#'} Usuário ➔  {(github_user if github_user else 'Não configurado'):<20} {10*'#'}")
+        print("O nome do usuário do github esta correto ? (S/n)")
+        opcao = input("➔  ").strip().lower()
+        if opcao == 'n':
+            print("Qual o nome do usuário do github ?")
+            github_user = input("➔  ").strip().lower()
+        elif opcao == 'x':
+            return False
+        if not github_user:
+            input(f"\r➔  Usuário não pode ser nulo! (Enter para continuar) ", end='')
+            continue
+        return github_user
+
+def configure_git_global(username):
+    """Configura o usuário e branch padrão se necessário."""
+    print_header("Configuração Global do Git")
+    
+    current_user = run_command("git config --global user.name", show_output=False, capture=True, verbose=False)
+    current_email = run_command("git config --global user.email", show_output=False, capture=True, verbose=False)
+
+    print(f"{10*'#'} Nome  ➔  {(current_user if current_user else 'Não configurado'):<20} {10*'#'}")
+    print(f"{10*'#'} Email ➔  {(current_email if current_email else 'Não configurado'):<20} {10*'#'}")
+    
+    if not current_user or not current_email:
+        print("\nConfigurando credenciais globais do Git...")
+        print(f"Informe o seu e-mail do GitHub (ex: {username}@gmail.com): ")
+        email = input("➔  ").strip()
+        if email.strip().lower() == 'x':
+            return None
+        run_command(f'git config --global user.name "{username}"')
+        run_command(f'git config --global user.email "{email}"')
+        run_command('git config --global init.defaultBranch main')
+        print("✅ Configuração global salva com sucesso!")
+        return True
+    else:
+        print("Configurações globais (Nome ou Email) estão corretas ? (S/n)")
+        opcao = input("➔  ").strip().lower()
+        if opcao == 'n':
+            print(f"\nQual o novo user.name para substituir {current_user} ?")
+            novo_nome = input("➔  ").strip() or current_user
+            print(f"\nQual o novo user.email para substituir {current_email} ?")
+            novo_email = input("➔  ").strip() or current_email
+            if novo_nome.strip().lower() == 'x' or novo_email.strip().lower() == 'x':
+                return None
+            run_command(f'git config --global user.name "{novo_nome}"')
+            run_command(f'git config --global user.email "{novo_email}"')
+            run_command('git config --global init.defaultBranch main')
+            print("✅ Configuração global atualizada!")
+            return True
+        elif opcao == 'x':
+            return None
+        return True
+
+def confirm_working_directory():
+    """Exibe e confirma/altera o diretório de trabalho local do projeto com validação."""
+    while True:
+        print_header("Pasta do computador para vinculação")
+        current_dir = os.getcwd()
+
+        print(f"{10*'#'} Pasta ➔  {current_dir} {10*'#'}")
+        print(f"É a pasta para vincular com o github ? [S/n]: ")
+        opcao = input("➔  ").strip().lower()
+        if opcao == 'x':
+            return None
+        
+        elif opcao not in ['n', 'nao', 'não']:
+            print(f"✅ Usando diretório: {current_dir}")
+            break
+
+        print("\n⌨️  Digite ou cole o caminho completo da pasta desejada: ")
+        novo_caminho = input("➔  ").strip().strip('"')
+        if novo_caminho == 'x':
+            return None
+        
+        if os.path.exists(novo_caminho) and os.path.isdir(novo_caminho):
+            os.chdir(novo_caminho)
+            print(f"✅ Diretório alterado com sucesso para: {os.getcwd()}")
+            break
+        else:
+            print("\n❌ ERRO: Caminho inválido ou pasta não encontrada!")
+            print("Por favor, tente novamente digitando o caminho correto ou confirme a pasta atual.")
+    return True
 
 def get_name_repositoring(github_user):
     # Pega o nome da pasta atual onde o usuário está executando o comando
     name_repositoring = Path(os.getcwd()).name
     print_header("Nome do repositório")
-    print(f"{10*'#'} {name_repositoring} {10*'#'}")
-    print(f"Confirma se é o nome repositório em github.com/{github_user}/ ? (S/n):")
+    print(f"{10*'#'} Repositório ➔  {name_repositoring} {10*'#'}")
+    print(f"Confirma o nome repositório em github.com/{github_user}/ ? (S/n):")
     name_response = input("➔  ").strip().lower()
-    
     if name_response in ['n', 'nao', 'não']:
         while True:
             print(f"\nQual o nome do repositório no github.com/{github_user}/ ?")
@@ -330,43 +360,33 @@ def get_name_repositoring(github_user):
                 print("⚠️  Nome do repositório é obrigatório.")
                 continue
             break
-    if name_response == '0':
+    if name_response == 'x':
         return None
     return name_repositoring
 
 def main():
     check_git_installed()
-    
 
+    github_user = get_name_user()
+    if not github_user:
+        return False
+    if not configure_git_global(github_user):
+        return False
 
-    while True:
-        print_header("Assistente Automatizado de Git & GitHub")
-        print("Qual o nome do seu usuário do github ?")
-        github_user = input("➔  ").strip()
-        if not github_user:
-            print(f"\r➔  Usuário não pode ser nulo! ", end='')
-            time.sleep(3)
-            continue
-        if github_user == '0':
-            return False
-        break
-     
-    configure_git_global(github_user)
-    
+    pasta_confirmado = False
     while True:
         print_header(f"Menu Principal - Assistente Git para {github_user}")
         print(f"Existe repositório em github.com/{github_user}/ ? ")
         print("[S] Sim, repositório já existe")
         print("[N] Não, quero criar um repositório novo")
         print("[U] Abrir menu de Utilitários diretos")
-        print("\nEscolha uma opção (S/N/U/0):")
+        print("\nEscolha uma opção (S, N, U ou X):")
         exist_repositoriong = input("➔  ").strip().lower()
-        
-        if exist_repositoriong in ['s', 'sim']:
-            # 1. Primeiro confirma/altera o diretório de trabalho local
-            confirm_working_directory()
-            
-            # 2. Agora obtém o nome correto baseado no diretório ajustado
+
+        if exist_repositoriong == 'x':
+            return False
+        elif exist_repositoriong in ['s', 'sim']:
+
             name_repositoring = get_name_repositoring(github_user)
             if not name_repositoring:
                 return False
@@ -375,15 +395,17 @@ def main():
             
             print_header("Menu Principal - Assistente Git")
             print(f"O que você deseja fazer com o repositório '{name_repositoring}' ?")
-            print("[1] CLONAR o repositório do GitHub para este computador")
-            print("[2] ENVIAR os arquivos deste computador para o GitHub")
-            print("[3] Abrir menu de Utilitários / Verificações do Git")
-            print("[4] Voltar ao menu principal")
-            print("\nEscolha uma opção (1, 2, 3, 4 ou 0): ")
+            print("[C] CLONAR o repositório do GitHub para este computador")
+            print("[E] ENVIAR os arquivos deste computador para o GitHub")
+            print("[A] Abrir menu de Utilitários / Verificações do Git")
+            print("[V] Voltar ao menu principal")
+            print("\nEscolha uma opção (C, E, A, V ou X): ")
             
             acao = input("➔  ").strip()
-            
-            if acao == '1':
+
+            if acao == 'x':
+                return False
+            elif acao == 'c':
                 confirm_working_directory()
                 print_header("Clonando Repositório")
                 cmd = f"git clone {repo_url}"
@@ -391,7 +413,7 @@ def main():
                     print(f"\n✅ Repositório '{name_repositoring}' clonado com sucesso!")
                     print(f"   Ele foi baixado em: {os.path.join(os.getcwd(), name_repositoring)}")
                 
-            elif acao == '2':
+            elif acao == 'e':
                 confirm_working_directory()
                 print_header("Enviando Arquivos Locais para Repositório Existente")
                 
@@ -436,15 +458,14 @@ def main():
                 print("\n✅  Processo concluído com sucesso!")
 
 
-            elif acao == '3':
+            elif acao == 'a':
                 if not show_git_utilities():
                     return False
 
-            elif acao == '4':
+            elif acao == 'v':
                 continue
 
-            elif acao == '0':
-                return False
+
 
         elif exist_repositoriong in ['n', 'nao', 'não']:
             confirm_working_directory()
@@ -496,8 +517,7 @@ def main():
         elif exist_repositoriong in ['u', 'utilitarios', 'utilitários']:
             show_git_utilities()
 
-        elif exist_repositoriong == '0':
-            return False
+
         else:
             print("Opção inválida. Tente novamente.")
 
