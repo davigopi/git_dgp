@@ -33,7 +33,7 @@ def run_command(command, show_output=True, capture=False, verbose=True, time_see
     if verbose and show_output:
         text = f"⛏️  {command}"
         text = text.ljust(70)      
-        for i in range(2, 0, -1):
+        for i in range(1, 0, -1):
             text_print = text +  '| ⏳ ' + str(i) + ' seg.'
             print(f'\r{text_print}', end='')
             time.sleep(1)
